@@ -8,12 +8,7 @@ const rush = () => {
     return ((randomRUSH <= 602) ? true : false)
 };
 
-const continuationTS = () => {
-    const randomTS = Math.floor(Math.random() * 99) + 1;
-    return ((randomTS <= 86) ? true : false) 
-};
-
-const continuationOH = () => {
+const continuation = () => {
     const randomOH = Math.floor(Math.random() * 99) + 1;
     return ((randomOH <= 49) ? true : false)
 };
@@ -25,7 +20,7 @@ const nineRound = () => {
 
 const spentBall = (count, borderline) => {
     return Math.floor(count * borderline);
-}
+};
 
 const bigBtn = document.getElementById('bigBtn');
 const resultContainer = document.getElementById('result');
@@ -39,7 +34,6 @@ bigBtn.addEventListener('click', () => {
 
     const borderline = document.getElementById('borderline').value;
     let flg = false;
-    let tsFlg = false;
     let rushFlg = false;
     let count = 0;
     let rushCount = 0;
@@ -56,20 +50,9 @@ bigBtn.addEventListener('click', () => {
             dedama += 660;
             if (rush() === true) {
                 while (!flg) {
-                    tsFlg = false;
-                    if (continuationTS() === true) {
-                        if (nineRound() === true) {
-                            dedama += 990;
-                            nineR++;
-                        } else {
-                            dedama += 330;
-                            threeR++;
-                        }
-                        rushCount++;
-                        tsFlg = true;
-                    }
-                    if (!tsFlg) {
-                        if (continuationOH() === true) {
+                    let n = 0;
+                    while (n < 4) {
+                        if (continuation() === true) {
                             if (nineRound() === true) {
                                 dedama += 990;
                                 nineR++;
@@ -78,10 +61,12 @@ bigBtn.addEventListener('click', () => {
                                 threeR++;
                             }
                             rushCount++;
-                        } else {
-                            flg = true;
+                        } else if (n === 3 && continuation() === false) {
                             rushFlg = true;
+                            flg = true;
+                            break;
                         }
+                        n++;
                     }
                 }
             } else {

@@ -29,7 +29,9 @@ const spentBall = (count, borderline) => {
 
 const bigBtn = document.getElementById('bigBtn');
 const resultContainer = document.getElementById('result');
+const challengeCountDom = document.getElementById('challengeCount');
 let motitama = 0;
+let challengeCount = 0;
 
 bigBtn.addEventListener('click', () => {
 
@@ -42,6 +44,9 @@ bigBtn.addEventListener('click', () => {
     let nineR = 0;
     let threeR = 0;
     let dedama = 0;
+
+    challengeCount++;
+    challengeCountDom.textContent = challengeCount;
 
     while (!flg) {
         count++;
@@ -93,5 +98,7 @@ bigBtn.addEventListener('click', () => {
         resultMsg.innerHTML = `${count}回目で大当たり<br>超源RUSH ${rushCount} 回<br>3R ${threeR} 回<br>9R ${nineR} 回<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>現在の持ち玉 ${motitama}<br>---------------------`;
         resultContainer.appendChild(resultMsg);
     }
+
+    document.getElementById('motidama').textContent = motitama;
 
 });

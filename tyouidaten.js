@@ -30,8 +30,10 @@ const spentBall = (count, borderline) => {
 const bigBtn = document.getElementById('bigBtn');
 const resultContainer = document.getElementById('result');
 const challengeCountDom = document.getElementById('challengeCount');
+const rushHundred = document.getElementById('rushHundred');
 let motitama = 0;
 let challengeCount = 0;
+let rushHundredCount = 0;
 
 bigBtn.addEventListener('click', () => {
 
@@ -100,5 +102,8 @@ bigBtn.addEventListener('click', () => {
     }
 
     document.getElementById('motidama').textContent = Math.floor(motitama);
-
+    if (rushCount > 99) {
+        rushHundredCount++;
+        rushHundred.textContent = rushHundredCount;
+    }
 });

@@ -29,6 +29,7 @@ const spentBall = (count, borderline) => {
 
 const bigBtn = document.getElementById('bigBtn');
 const resultContainer = document.getElementById('result');
+let motitama = 0;
 
 bigBtn.addEventListener('click', () => {
 
@@ -78,16 +79,18 @@ bigBtn.addEventListener('click', () => {
                 }
             } else {
                 flg = true;
+                motitama += dedama - spentBall(count, borderline);
                 const resultMsg = document.createElement('div');
-                resultMsg.innerHTML = `${count}回目で大当たり<br>単発で終了<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>---------------------`;
+                resultMsg.innerHTML = `${count}回目で大当たり<br>単発で終了<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>現在の持ち玉 ${motitama}<br>---------------------`;
                 resultContainer.appendChild(resultMsg);
             }     
         }
     }
     
     if (rushFlg) {
+        motitama += dedama - spentBall(count, borderline);
         const resultMsg = document.createElement('div');
-        resultMsg.innerHTML = `${count}回目で大当たり<br>超源RUSH ${rushCount} 回<br>3R ${threeR} 回<br>9R ${nineR} 回<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>---------------------`;
+        resultMsg.innerHTML = `${count}回目で大当たり<br>超源RUSH ${rushCount} 回<br>3R ${threeR} 回<br>9R ${nineR} 回<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>現在の持ち玉 ${motitama}<br>---------------------`;
         resultContainer.appendChild(resultMsg);
     }
 

@@ -52,7 +52,8 @@ bigBtn.addEventListener('click', () => {
                 while (!flg) {
                     let n = 0;
                     while (n < 4) {
-                        if (continuation() === true) {
+                        const rushbonus = continuation();
+                        if (rushbonus === true) {
                             if (nineRound() === true) {
                                 dedama += 990;
                                 nineR++;
@@ -61,10 +62,10 @@ bigBtn.addEventListener('click', () => {
                                 threeR++;
                             }
                             rushCount++;
-                        } else if (n === 3 && continuation() === false) {
+                            break;
+                        } else if (n === 3 && rushbonus === false) {
                             rushFlg = true;
                             flg = true;
-                            break;
                         }
                         n++;
                     }

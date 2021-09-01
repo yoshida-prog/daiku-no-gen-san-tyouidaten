@@ -23,11 +23,16 @@ const nineRound = () => {
     return ((random9R <= 20) ? true : false)
 };
 
+const spentBall = (count, borderline) => {
+    return Math.floor(count * borderline);
+}
+
 const bigBtn = document.getElementById('bigBtn');
 const resultContainer = document.getElementById('result');
 
 bigBtn.addEventListener('click', () => {
 
+    const borderline = document.getElementById('borderline').value;
     let flg = false;
     let tsFlg = false;
     let rushFlg = false;
@@ -74,7 +79,7 @@ bigBtn.addEventListener('click', () => {
             } else {
                 flg = true;
                 const resultMsg = document.createElement('div');
-                resultMsg.innerHTML = `${count}回目で大当たり<br>単発で終了<br>出玉 ${dedama} 発<br>---------------------`;
+                resultMsg.innerHTML = `${count}回目で大当たり<br>単発で終了<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>---------------------`;
                 resultContainer.appendChild(resultMsg);
             }     
         }
@@ -82,7 +87,7 @@ bigBtn.addEventListener('click', () => {
     
     if (rushFlg) {
         const resultMsg = document.createElement('div');
-        resultMsg.innerHTML = `${count}回目で大当たり<br>超源RUSH ${rushCount} 回<br>3R ${threeR} 回<br>9R ${nineR} 回<br>出玉 ${dedama} 発<br>---------------------`;
+        resultMsg.innerHTML = `${count}回目で大当たり<br>超源RUSH ${rushCount} 回<br>3R ${threeR} 回<br>9R ${nineR} 回<br>出玉 ${dedama} 発<br>投資 ${spentBall(count, borderline)} 発<br>---------------------`;
         resultContainer.appendChild(resultMsg);
     }
 
